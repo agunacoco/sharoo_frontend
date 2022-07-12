@@ -1,7 +1,6 @@
 <template>
   <div>
-    <h1>여기는 App.vue</h1>
-    <router-view />
+    <h1>여기는 메인</h1>
   </div>
 </template>
 
