@@ -1,5 +1,4 @@
 <template>
-<<<<<<< HEAD
   <div
     class="flex flex-col max-w-md p-6 rounded-md sm:p-10 dark:bg-gray-900 dark:text-gray-100"
   >
@@ -59,29 +58,11 @@
             Sign up
           </router-link>
         </p>
-=======
-  <div>
-    <form @submit="login">
-      <div>
-        <label for="email">email</label>
-        <input id="email" type="text" v-model="form.email" />
-      </div>
-      <div>
-        <label for="password">password</label>
-        <input id="password" type="password" v-model="form.password" />
-      </div>
-      <div>
-        <button type="submit">login</button>
->>>>>>> 34e62088e5e6cd9d4e5d48a88cb340d10ea2ca35
       </div>
     </form>
     <button @click="onClickButton">미들웨어 api 호출</button>
   </div>
 </template>
-<<<<<<< HEAD
-=======
-
->>>>>>> 34e62088e5e6cd9d4e5d48a88cb340d10ea2ca35
 <script>
 import { reactive } from "vue";
 import { useStore } from "vuex";
