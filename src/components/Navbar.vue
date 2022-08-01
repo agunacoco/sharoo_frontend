@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
   <Disclosure class="bg-white shadow" as="nav" v-slot="{ open }">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
@@ -186,3 +187,20 @@ const userNavItems = [
   { name: "Sign out", path: "" },
 ];
 </script>
+=======
+  <div>
+    <h1>나는 Navbar입니당</h1>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "Navbar",
+  props: {},
+  methods: {},
+};
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped></style>
+>>>>>>> 34e62088e5e6cd9d4e5d48a88cb340d10ea2ca35
