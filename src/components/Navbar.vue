@@ -2,26 +2,26 @@
   <Disclosure class="bg-white shadow" as="nav" v-slot="{ open }">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
-        <div class="flex items-center">
+        <div class="h-full flex items-center">
           <div class="flex">
             <img
               class="h-8 w-8"
               src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
               alt="Workflow"
             />
-            <h1 class="text-3xl font-bold text-gray-900 mx-1">Sharoo</h1>
+            <h1 class="text-2xl font-semibold text-gray-900 ml-1">Sharoo</h1>
           </div>
           <div class="hidden md:block">
-            <div class="ml-10 flex items-baseline space-x-4">
+            <div class="ml-5 flex space-x-4 h-16">
               <router-link
                 v-for="item in navItems"
                 :key="item.name"
                 :to="item.path"
                 :class="[
-                  item.path === $router.path
-                    ? 'text-purple-600 font-bold'
-                    : 'text-gray-900  hover:text-purple-500 font-medium',
-                  'px-3 py-2 rounded-md text-md',
+                  item.path === $route.path
+                    ? 'text-gray-900 font-semibold border-b-2 border-purple-500 '
+                    : 'text-gray-500  hover:text-purple-500 hover:border-b-purple-500 font-medium',
+                  ' px-3 pt-5 text-md',
                 ]"
                 >{{ item.name }}
               </router-link>
