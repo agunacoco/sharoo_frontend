@@ -11,6 +11,7 @@ import CommunityRegister from "../views/CommunityRegister.vue";
 import UserPosts from "../views/UserPosts.vue";
 import UserReviews from "../views/UserReviews.vue";
 import UserProfile from "../views/UserProfile.vue";
+import UserEdit from "../views/UserEdit.vue";
 
 const routes = [
   { path: "/", component: Main },
@@ -23,6 +24,11 @@ const routes = [
         // /user/:id/profile
         path: "profile",
         component: UserProfile,
+      },
+      {
+        // /user/:id/edit
+        path: "edit",
+        component: UserEdit,
       },
       {
         // /user/:id/reviews

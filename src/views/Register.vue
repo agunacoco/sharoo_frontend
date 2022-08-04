@@ -7,7 +7,7 @@
       <p class="text-sm dark:text-gray-400">Sign up to access your account</p>
     </div>
 
-    <form @submit="register" method="post" enctype="multipart/form-data">
+    <form @submit="userRegister">
       <div class="flex flex-col space-y-7">
         <label for="name">
           <p class="block text-sm font-medium text-gray-700">Name</p>
@@ -42,47 +42,51 @@
             class="mt-1 py-3 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
           />
         </label>
-        <label for="image">
-          <p class="block text-sm font-medium text-gray-700">Profile Image</p>
-          <div
-            class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md"
+        <label for="age">
+          <p class="block text-sm font-medium text-gray-700">Age</p>
+          <input
+            id="age"
+            name="age"
+            type="number"
+            v-model="form.age"
+            placeholder="Enter your age"
+            class="mt-1 py-3 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+          />
+        </label>
+        <label for="sex">
+          <p class="block text-sm font-medium text-gray-700">Sex</p>
+          <select
+            class="mt-1 py-3 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+            id="sex"
+            name="sex"
+            v-model="form.sex"
           >
-            <div class="space-y-1 text-center">
-              <label
-                for="image"
-                class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
-              >
-                <svg
-                  class="mx-auto h-12 w-12 text-gray-400"
-                  stroke="currentColor"
-                  fill="none"
-                  viewBox="0 0 48 48"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-
-                <input
-                  id="image"
-                  name="image"
-                  type="file"
-                  ref="image"
-                  @change="uploadImg"
-                  accept="image/*"
-                  class="sr-only"
-                />
-              </label>
-              <p class="pl-1 text-sm text-indigo-600">
-                Upload a file or drag and drop
-              </p>
-              <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
-            </div>
-          </div>
+            <option>M</option>
+            <option>F</option>
+          </select>
+        </label>
+        <label for="birthday">
+          <p class="block text-sm font-medium text-gray-700">Birthday</p>
+          <input
+            type="date"
+            id="birthday"
+            name="birthday"
+            v-model="form.birthday"
+            class="mt-1 py-3 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+          />
+        </label>
+        <label for="phone">
+          <p class="block text-sm font-medium text-gray-700">Phone Number</p>
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            v-model="form.phone_number"
+            placeholder="010-0000-0000"
+            pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"
+            class="mt-1 py-3 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+            required
+          />
         </label>
         <button
           type="submit"
@@ -97,56 +101,43 @@
 
 <script>
 import { reactive } from "vue";
-// import { useStore } from "vuex";
-import { getHouses } from "../api/houses";
+import { register } from "../api/users";
+import { useRouter } from "vue-router";
 
 export default {
   name: "Register",
   components: {},
   setup() {
-    // const store = useStore();
+    const router = useRouter();
 
     const form = reactive({
       name: "",
       email: "",
       password: "",
-      image: "",
+      age: 0,
+      sex: "",
+      birthday: "",
+      phone_number: "",
     });
 
-    const uploadImg = (e) => {
-      console.log(e.target.files[0]);
-      form.image = e.target.files;
-    };
-
-    const register = async (e) => {
+    const userRegister = async (e) => {
       e.preventDefault();
-      console.log(form);
-      // try {
-      //   await store.dispatch("user/login", form);
-      //   console.log("성공");
-      // } catch (error) {
-      //   console.log("실패");
-      //   console.log(error);
-      //   console.log(error.message);
-      //   console.log(error.response);
-      // }
-    };
-
-    const onClickButton = async () => {
+      // console.log(form);
       try {
-        const { data } = await getHouses();
+        await register(form);
         console.log("성공");
-        console.log(data);
+        router.push("/login");
       } catch (error) {
+        console.log("실패");
+        console.log(error);
+        console.log(error.message);
         console.log(error.response);
       }
     };
 
     return {
       form,
-      register,
-      onClickButton,
-      uploadImg,
+      userRegister,
     };
   },
 };
