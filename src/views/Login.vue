@@ -91,7 +91,7 @@
 <script>
 import { reactive } from "vue";
 import { useStore } from "vuex";
-import { getHouses } from "../api/houses";
+import { getUser } from "../api/users";
 
 export default {
   name: "Login",
@@ -120,7 +120,7 @@ export default {
 
     const onClickButton = async () => {
       try {
-        const { data } = await getHouses();
+        const { data } = await getUser();
         console.log("성공");
         console.log(data);
       } catch (error) {

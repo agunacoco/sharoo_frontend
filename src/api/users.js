@@ -7,3 +7,7 @@ export function login(payload) {
 export function register(payload) {
   return axiosInstance.post("/users/register", payload);
 }
+
+export function getUser() {
+    return axiosInstance.get("/users");
+}
